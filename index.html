@@ -95,40 +95,56 @@
 			<aside class="filters">
 				<ul class="filters__list">
 					<li class="filters__item">
-						<button class="filters__item-button"></button>
-						<p class="filters__item-legend">новинки</p>
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch1" class="switch__input">
+							<label for="filterSwitch1" class="switch__label"></label>
+							<span class="switch__text">Новинки</span>
+						</div>
 					</li>
 					<li class="filters__item">
-						<button class="filters__item-button"></button>
-						<p class="filters__item-legend">есть в наличии</p>
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch2" class="switch__input">
+							<label for="filterSwitch2" class="switch__label"></label>
+							<span class="switch__text">Есть в наличии</span>
+						</div>
 					</li>
 					<li class="filters__item">
-						<button class="filters__item-button"></button>
-						<p class="filters__item-legend">контрактные</p>
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch3" class="switch__input">
+							<label for="filterSwitch3" class="switch__label"></label>
+							<span class="switch__text">Контрактные</span>
+						</div>
 					</li>
 					<li class="filters__item">
-						<button class="filters__item-button"></button>
-						<p class="filters__item-legend">эксклюзивные</p>
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch4" class="switch__input">
+							<label for="filterSwitch4" class="switch__label"></label>
+							<span class="switch__text">Эксклюзивные</span>
+						</div>
 					</li>
 					<li class="filters__item">
-						<button class="filters__item-button"></button>
-						<p class="filters__item-legend">распродажа</p>
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch5" class="switch__input">
+							<label for="filterSwitch5" class="switch__label"></label>
+							<span class="switch__text">Распродажа</span>
+						</div>
 					</li>
 				</ul>
 			</aside>
 			<section class="products">
 				<div class="products__count-and-sort">
 					<div class="products__count">
-						<p><span>412</span>товаров</p>
+						<p><span>412</span> товаров</p>
 					</div>
 					<div class="sort-dropdown">
-						<button class="sort-dropdown__button">сначала дорогие</button>
-						<div class="sort-dropdown__modal" style="visibility: hidden;">
-							<ul class="sort-dropdown__modal-list">
-								<li class="sort-dropdown__modal-item">сначала дорогие</li>
-								<li class="sort-dropdown__modal-item">сначала недорогие</li>
-								<li class="sort-dropdown__modal-item">сначала популярные</li>
-								<li class="sort-dropdown__modal-item">сначала новые</li>
+						<button class="sort-dropdown__button" onclick="toggleModal()">Cначала дорогие</button>
+						<div class="overlay" id="overlay" ></div>
+						<div class="modal" id="sortModal">
+							<ul class="modal__list">
+								<li class="modal__item" onclick="selectOption('Сначала дорогие')">Сначала дорогие</li>
+								<li class="modal__item" onclick="selectOption('Сначала недорогие')">Сначала недорогие</li>
+								<li class="modal__item" onclick="selectOption('Сначала популярные')">Сначала популярные</li>
+								<li class="modal__item" onclick="selectOption('Сначала новые')">Сначала новые</li>
 							</ul>
 						</div>
 					</div>
