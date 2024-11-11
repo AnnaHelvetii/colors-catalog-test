@@ -19,10 +19,13 @@ html, body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	height: 100vh;
 	font-family: "Inter", serif;
 	font-size: 16px;
 	font-weight: 400;
+}
+
+body {
+	flex: 1;
 }
 
 .header {
@@ -157,7 +160,7 @@ html, body {
 	right: -600px;
 	top: 0;
 	background-color: var(--white-text);
-	position: absolute;
+	position: fixed;
 	transition: right 0.35s ease-out;
 	z-index: 600;
 }
@@ -229,6 +232,21 @@ html, body {
 }
 
 .cart_products-list {
+	max-height: 500px;
+	overflow-y: auto;
+}
+
+.cart_products-list::-webkit-scrollbar {
+	width: 6px;
+}
+
+.cart_products-list::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+}
+
+.cart_products-list::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 .cart__footer {
@@ -289,6 +307,7 @@ html, body {
 
 .main {
 	padding-bottom: 72px;
+	flex: 1;
 }
 
 .slider {

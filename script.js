@@ -6,15 +6,17 @@ const openCartButton = document.getElementById('cart-button-open');
 const closeCartButton = document.querySelector('.cart__close-button');
 
 function toggleCart() {
-	document.body.classList.toggle('cart-open');
+	const isCardOpen = document.body.classList.toggle('cart-open');
 	const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-	if (document.body.classList.contains('cart-open')) {
+	if (isCardOpen) {
 		document.body.style.overflow = 'hidden';
 		document.body.style.paddingRight = `${scrollBarWidth}px`;
+		localStorage.setItem('isCartOpen', 'true');
 	} else {
 		document.body.style.overflow = '';
 		document.body.style.paddingRight = '';
+		localStorage.setItem('isCartOpen', 'false');
 	}
 };
 
@@ -26,6 +28,16 @@ openCartButton.addEventListener('click', (event) => {
 closeCartButton.addEventListener('click', toggleCart);
 
 overlay.addEventListener('click', toggleCart);
+
+document.addEventListener('DOMContentLoaded', () => {
+	const isCartOpen = localStorage.getItem('isCartOpen') === 'true';
+	if (isCartOpen) {
+		document.body.classList.add('cart-open');
+		const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+		document.body.style.overflow = 'hidden';
+		document.body.style.paddingRight = `${scrollBarWidth}px`;
+	}
+});
 
 /* Slider + arrows */
 
@@ -76,3 +88,4 @@ window.addEventListener('click', function(event) {
 		overlay.classList.remove('show-overlay');
 	}
 });
+
