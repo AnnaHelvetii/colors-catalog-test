@@ -8,6 +8,31 @@
 </head>
 <body>
 	<header class="header">
+		<div class="cart-overlay" id="cart-overlay"></div>
+		<div class="cart">
+			<div class="cart__main">
+				<div class="cart__header">
+					<div class="cart__title">Корзина</div>
+					<button class="cart__close-button"></button>	
+				</div>
+				<div class="cart__products">
+					<div class="cart__products-header">
+						<div class="cart-count">
+							<p><span>0</span> товара</p>
+						</div>
+						<div class="cart__clear">очистить список</div>
+					</div>
+					<div class="cart_products-list"></div>
+				</div>
+			</div>
+			<div class="cart__footer">
+				<div class="final-price">
+					<p class="final-price__text">Итого</p>
+					<p class="final-price__price">0₽</p>
+				</div>
+				<button class="button-order">оформить заказ</button>
+			</div>
+		</div>
 		<div class="container">
 			<nav class="nav">
 				<div class="nav__content">
@@ -40,23 +65,23 @@
 					<ul class="icons">
 						<li class="icons-item">
 							<a href="#" class="icons-item__link">
-								<img src="./src/img/icons/search.png" class="icons-item__img" alt="">
+								<img src="./src/img/icons/search.png" class="icons-item__img" alt="search">
 							</a>
 						</li>
 						<li class="icons-item">
 							<a href="#" class="icons-item__link">
-								<img src="./src//img/icons/profile.png" class="icons-item__img" alt="">
+								<img src="./src//img/icons/profile.png" class="icons-item__img" alt="profile">
 							</a>
 						</li>
 						<li class="icons-item">
 							<a href="#" class="icons-item__link">
-								<img src="./src//img/icons/heart.png" class="icons-item__img" alt="">
+								<img src="./src//img/icons/heart.png" class="icons-item__img" alt="like">
 							</a>
 						</li>
 						<li class="icons-item">
-							<a href="#" class="icons-item__link">
-								<div class="icons-item__link_green">
-									<p>4</p>
+							<a href="#" class="icons-item__link" id="cart-button-open">
+								<div class="icons-item__cart-button">
+									<p>0</p>
 								</div>
 							</a>
 						</li>
@@ -150,216 +175,6 @@
 					</div>
 				</div>
 				<div class="products__list" id="products-list">
-					<!-- <a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a>
-					<a href="#" class="product-card">
-						<div class="product-card__img-wrapper">
-							<img class="product-card__img" src="" alt="">
-						</div>
-						<div class="product-card__content">
-							<p class="product-card__title">
-								Краска Wallquest, Brownsone MS90102
-							</p>
-							<div class="product-card__footer">
-								<p class="product-card__price">6000 ₽</p>
-								<button class="product-card__button">+</button>
-							</div>
-						</div>
-					</a> -->
 				</div>
 			</section>
 		</div>

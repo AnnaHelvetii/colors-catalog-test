@@ -30,7 +30,7 @@ function displayProducts(products) {
 				</p>
 				<div class="product-card__footer">
 					<p class="product-card__price">${product.price} ₽</p>
-					<button class="product-card__button" onclick="addToCart('${product.id}')">+</button>
+					<button class="product-card__button" onclick="addToCart('${product.id}')"></button>
 				</div>
 			</div>
 		`;
