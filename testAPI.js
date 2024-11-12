@@ -14,7 +14,7 @@ async function fetchProducts() {
 		const products = await response.json();
 		displayProducts(products);
 	} catch (error) {
-		console.error('Товары не загружены', error);
+		console.error('При загрузке товаров произошла ошибка', error);
 	}
 };
 
@@ -53,15 +53,19 @@ async function addToCart(productId) {
 		const existingCartItem = localCart.find(item => item.id === productId);
 
 		if (existingCartItem) {
-			existingCartItem.quantity += 1;
+			if (product.inStock) {
+				existingCartItem.quantity += 1;
+			} else {
+				existingCartItem = 1;
+			}
 		} else {
-		localCart.push({ ...product, quantity: 1 });
+			localCart.push({ ...product, quantity: product.inStock ? 1 : 1 });
 		}
 
 		saveCartToStorage();
 		displayCartItems();
 	} catch (error) {
-		console.error('Ошибка добавления товара в корзину:', error);
+		console.error('Товар не добавлен:', error);
 	}
 }
 
@@ -78,35 +82,82 @@ function loadCartFromStorage() {
 function displayCartItems() {
 	const cartList = document.querySelector('.cart_products-list');
 	const cartCount = document.querySelector('.cart-count span');
+	const iconsItemCartButton = document.querySelector('.icons-item__cart-button p');
 	const finalPriceElement = document.querySelector('.final-price__price');
 
 	cartList.innerHTML = '';
 	let totalPrice = 0;
+	let totalItemCount = 0;
 
 	localCart.forEach(item => {
 		const cartItem = document.createElement('div');
 		cartItem.className = 'cart-item';
+		const itemOpacity = item.inStock ? '1' : '0.4';
+		const quantityControls = item.inStock ? '' : 'disabled';
+		const removeButtonClass = item.inStock ? '' : 'out-of-stock';
 
 		cartItem.innerHTML = `
-		<img src="${item.image}" alt="${item.name}" class="cart-item__image">
-		<div class="cart-item__details">
-			<h3 class="cart-item__name">${item.name}</h3>
-			<p class="cart-item__price">${item.price} ₽</p>
-			<p class="cart-item__quantity">Количество: ${item.quantity}</p>
+		<div class="cart-item__image-text" style="opacity: ${itemOpacity}">
+			<img src="${item.image}" alt="${item.name}" class="cart-item__image">
+			<div class="cart-item__details">
+				<h3 class="cart-item__name">${item.name}</h3>
+				<p class="cart-item__price">${item.price} ₽</p>
+			</div>
 		</div>
-		<button class="cart-item__remove" onclick="removeFromCart('${item.id}')">Удалить</button>
+		<div class="cart-item__button-section">
+			<div class="cart-item__set-quantity">
+				<button class="button-decrease" onclick="decreaseQuantity('${item.id}')" ${quantityControls}></button>
+				<p class="cart-item__quantity">${item.quantity}</p>
+				<button class="button-increase" onclick="increaseQuantity('${item.id}')" ${quantityControls}></button>
+			</div>
+			<button class="cart-item__remove ${removeButtonClass}" onclick="removeFromCart('${item.id}')"></button>
+		</div>
 		`;
 
 		cartList.appendChild(cartItem);
-		totalPrice += item.price * item.quantity;
+
+		if (item.inStock) {
+			totalPrice += item.price * item.quantity;
+			totalItemCount += item.quantity;
+		}
 	});
 
-	cartCount.textContent = localCart.length;
+	cartCount.textContent = totalItemCount;
+	iconsItemCartButton.textContent = totalItemCount;
 	finalPriceElement.textContent = `${totalPrice} ₽`;
-}
+};
 
 function removeFromCart(productId) {
 	localCart = localCart.filter(item => item.id !== productId);
 	saveCartToStorage();
 	displayCartItems();
-}
+};
+
+function decreaseQuantity(productId) {
+	const cartItem = localCart.find(item => item.id === productId);
+	if (cartItem && cartItem.quantity > 1) {
+		cartItem.quantity -= 1;
+		saveCartToStorage();
+		displayCartItems();
+	} else if (cartItem && cartItem.quantity === 1) {
+		removeFromCart(productId);
+	}
+};
+
+function increaseQuantity(productId) {
+	const cartItem = localCart.find(item => item.id === productId);
+	if (cartItem) {
+		cartItem.quantity += 1;
+		saveCartToStorage();
+		displayCartItems();
+	}
+};
+
+function clearCart() {
+	localCart = [];
+	saveCartToStorage();
+	displayCartItems();
+};
+
+const clearCartButton = document.querySelector('.cart__clear');
+clearCartButton.addEventListener('click', clearCart);
