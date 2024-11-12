@@ -3,6 +3,7 @@
 const cart = document.querySelector('.cart');
 const overlay = document.querySelector('.cart-overlay');
 const openCartButton = document.getElementById('cart-button-open');
+const openCartButtonMini = document.querySelector('.icons-item__cart-button-mini');
 const closeCartButton = document.querySelector('.cart__close-button');
 
 function toggleCart() {
@@ -24,6 +25,13 @@ openCartButton.addEventListener('click', (event) => {
 	event.preventDefault();
 	toggleCart();
 });
+
+if (openCartButtonMini) {
+	openCartButtonMini.addEventListener('click', (event) => {
+		event.preventDefault();
+		toggleCart();
+	});
+}
 
 closeCartButton.addEventListener('click', toggleCart);
 

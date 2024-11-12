@@ -2,6 +2,12 @@ const API_BASE_URL = 'https://67309b8066e42ceaf160cbf8.mockapi.io/api/v1/product
 
 let localCart = [];
 
+const productsContainer = document.getElementById('products-list');
+const productsCount = document.querySelector('.products__count span');
+
+let allProducts = [];
+let filteredProducts = [];
+
 document.addEventListener('DOMContentLoaded', () => {
 	fetchProducts();
 	loadCartFromStorage();
@@ -11,39 +17,81 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchProducts() {
 	try {
 		const response = await fetch(`${API_BASE_URL}/products`);
-		const products = await response.json();
-		displayProducts(products);
+		allProducts = await response.json();
+		filteredProducts = allProducts;
+		displayProducts(filteredProducts);
 	} catch (error) {
 		console.error('При загрузке товаров произошла ошибка', error);
 	}
 };
 
 function displayProducts(products) {
-	const productList = document.getElementById('products-list');
-	productList.innerHTML = '';
+	const noProductsMessage = document.createElement('p');
+	noProductsMessage.classList.add('no-products-message');
+	noProductsMessage.textContent = "Товары не найдены";
 
-	products.forEach(product => {
-		const productCard = document.createElement('div');
-		productCard.className = 'product-card';
+	productsContainer.innerHTML = '';
 
-		productCard.innerHTML = `
-			<div class="product-card__img-wrapper">
-				<img class="product-card__img" src="${product.image}" alt="${product.name}">
-			</div>
-			<div class="product-card__content">
-				<p class="product-card__title">
-					${product.name}
-				</p>
-				<div class="product-card__footer">
-					<p class="product-card__price">${product.price} ₽</p>
-					<button class="product-card__button" onclick="addToCart('${product.id}')"></button>
+	if (products.length === 0) {
+		productsContainer.classList.add('empty');
+		productsContainer.appendChild(noProductsMessage);
+	} else {
+		productsContainer.classList.remove('empty');
+
+		products.forEach(product => {
+			const productCard = document.createElement('div');
+			productCard.className = 'product-card';
+
+			productCard.innerHTML = `
+				<div class="product-card__img-wrapper">
+					<img class="product-card__img" src="${product.image}" alt="${product.name}">
 				</div>
-			</div>
-		`;
+				<div class="product-card__content">
+					<p class="product-card__title">
+						${product.name}
+					</p>
+					<div class="product-card__footer">
+						<p class="product-card__price">${product.price} ₽</p>
+						<button class="product-card__button" onclick="addToCart('${product.id}')"></button>
+					</div>
+				</div>
+			`;
 
-		productList.appendChild(productCard);
-	});
+			productsContainer.appendChild(productCard);
+		});
+	}
+
+	productsCount.textContent = products.length;
 }
+
+function applyFilters() {
+	const isNewChecked = document.getElementById('filterSwitch1').checked;
+	const isInStockChecked = document.getElementById('filterSwitch2').checked;
+	const isContractChecked = document.getElementById('filterSwitch3').checked;
+	const isExclusiveChecked = document.getElementById('filterSwitch4').checked;
+	const isSaleChecked = document.getElementById('filterSwitch5').checked;
+
+	filteredProducts = allProducts.filter(product => {
+		const addedAtDate = new Date(product.addedAt);
+		const filterDate = new Date("2024-05-07T14:30:00Z");
+
+		return (
+			(!isNewChecked || addedAtDate >= filterDate) &&
+			(!isInStockChecked || product.inStock) &&
+			(!isContractChecked || (Array.isArray(product.category)) && product.category.includes("contract")) &&
+			(!isExclusiveChecked || (Array.isArray(product.category)) && product.category.includes("exclusive")) &&
+			(!isSaleChecked || (Array.isArray(product.category)) && product.category.includes("sale"))
+		);
+	});
+
+	displayProducts(filteredProducts);
+}
+
+document.querySelectorAll('.filters__item .switch__input').forEach(filter => {
+	filter.addEventListener('change', applyFilters);
+});
+
+document.addEventListener('DOMContentLoaded', fetchProducts);
 
 async function addToCart(productId) {
 	try {
@@ -83,6 +131,7 @@ function displayCartItems() {
 	const cartList = document.querySelector('.cart_products-list');
 	const cartCount = document.querySelector('.cart-count span');
 	const iconsItemCartButton = document.querySelector('.icons-item__cart-button p');
+	const iconsItemCartButtonMini = document.querySelector('.icons-item__cart-button-mini p');
 	const finalPriceElement = document.querySelector('.final-price__price');
 
 	cartList.innerHTML = '';
@@ -123,7 +172,8 @@ function displayCartItems() {
 	});
 
 	cartCount.textContent = totalItemCount;
-	iconsItemCartButton.textContent = totalItemCount;
+	if (iconsItemCartButton) iconsItemCartButton.textContent = totalItemCount;
+	if (iconsItemCartButtonMini) iconsItemCartButtonMini.textContent = totalItemCount;
 	finalPriceElement.textContent = `${totalPrice} ₽`;
 };
 
