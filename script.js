@@ -122,25 +122,41 @@ window.addEventListener('click', function(event) {
 	}
 });
 
-/* Modal sliders in mobile */
+/* Burger dropdown for mobile */
 
-const filtersToggleButton = document.querySelector('.filters-toggle-button');
-const filtersModal = document.querySelector('.filters-modal');
-const filtersModalClose = document.querySelector('.filters-modal-close');
+document.addEventListener('DOMContentLoaded', () => {
+	const burgerIcon = document.getElementById('burger-icon');
+	const burgerDropdown = document.getElementById('burger-dropdown');
 
-// Открытие модального окна
-filtersToggleButton.addEventListener('click', () => {
-	filtersModal.style.display = 'flex';
-	document.body.style.overflow = 'hidden'; // Блокируем прокрутку
+	function toggleBurgerMenu() {
+		burgerDropdown.classList.toggle('show');
+	};
+
+	burgerIcon.addEventListener('click', (event) => {
+		event.stopPropagation();
+		toggleBurgerMenu();
+	});
+
+	document.addEventListener('click', (event) => {
+		if (!burgerDropdown.contains(event.target) && burgerDropdown.classList.contains('show')) {
+			burgerDropdown.classList.remove('show');
+		}
+	});
 });
 
+/* Mobile filters-switchers */
 
+document.addEventListener('DOMContentLoaded', () => {
+	const filtersToggleButton = document.querySelector('.filters-toggle-button');
+	const filters = document.querySelector('.filters');
+	const overlay = document.querySelector('.overlay-mobile');
 
-// Закрытие модального окна при клике вне его содержимого
-filtersModal.addEventListener('click', (e) => {
-	if (e.target === filtersModal) {
-		filtersModal.style.display = 'none';
-		document.body.style.overflow = '';
+	function toggleFilters() {
+		filters.classList.toggle('show');
+		overlay.classList.toggle('show');
 	}
-});
 
+	filtersToggleButton.addEventListener('click', toggleFilters);
+
+	overlay.addEventListener('click', toggleFilters);
+});
