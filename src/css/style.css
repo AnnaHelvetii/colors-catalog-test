@@ -6,6 +6,26 @@
 	src: url('../fonts/TTHoves-Medium.ttf');
 }
 
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Light.otf')
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Medium.otf')
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-SemiBold.otf')
+}
+
 :root {
 	--black: #000;
 	--dark-gray: #1F2020;
@@ -18,9 +38,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	font-family: "Inter", serif;
+	font-family: 'Inter';
 	font-size: 16px;
-	font-weight: 400;
+	font-weight: 300;
 }
 
 .header {
@@ -524,7 +544,7 @@ body {
 .slider__title {
 	font-size: 72px;
 	line-height: calc(72px * 0.88);
-	letter-spacing: calc(72px * 0.02);
+	letter-spacing: calc(72px* -0.02);
 }
 
 .slider__subtitle {
