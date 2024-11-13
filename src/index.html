@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" src="css/style.css">
 	<title>Colors</title>
 </head>
 <body>
@@ -59,7 +59,7 @@
 			<nav class="nav">
 				<div class="nav__content">
 					<a href="#" class="logo__link">
-						<img src="./src/img/icons/logo-colors.png" alt="logo">
+						<img src="img/icons/logo-colors.png" alt="logo">
 					</a>
 					<ul class="nav-list">
 						<li class="nav-list__item">
@@ -86,13 +86,13 @@
 					</div>
 					<div class="icons">
 						<a href="#" class="icons-item__link">
-							<img src="./src/img/icons/search.png" class="icons-item__img" alt="search">
+							<img src="img/icons/search.png" alt="search">
 						</a>
 						<a href="#" class="icons-item__link">
-							<img src="./src//img/icons/profile.png" class="icons-item__img" alt="profile">
+							<img src="img/icons/profile.png" class="icons-item__img" alt="profile">
 						</a>					
 						<a href="#" class="icons-item__link">
-							<img src="./src//img/icons/heart.png" class="icons-item__img" alt="like">
+							<img src="img/icons/heart.png" class="icons-item__img" alt="like">
 						</a>					
 						<a href="#" class="icons-item__link" id="cart-button-open">
 							<div class="icons-item__cart-button">
@@ -112,10 +112,10 @@
 				<span class="breadcrumbs__item">краски</span>
 			</nav>
 			<button class="slider__arrow slider__arrow_left">
-				<img src="./src/img/icons/arrow-left.svg" alt="arrow-left">
+				<img src="img/icons/arrow-left.svg" alt="arrow-left">
 			</button>
 			<button class="slider__arrow slider__arrow_right">
-				<img src="./src/img/icons/arrow-right.svg" alt="arrow-right">
+				<img src="img/icons/arrow-right.svg" alt="arrow-right">
 			</button>
 			<div class="slider__content">
 				<h1 class="slider__title">Краски</h1>
@@ -178,14 +178,14 @@
 					</div>
 					<button class="filters-toggle-button">Фильтры</button>
 					<div class="sort-dropdown">
-						<button class="sort-dropdown__button" onclick="toggleModal()">Cначала дорогие</button>
+						<button class="sort-dropdown__button">Cначала дорогие</button>
 						<div class="overlay" id="overlay"></div>
 						<div class="modal" id="sortModal">
 							<ul class="modal__list">
-								<li class="modal__item" onclick="selectOption('Сначала дорогие')">Сначала дорогие</li>
-								<li class="modal__item" onclick="selectOption('Сначала недорогие')">Сначала недорогие</li>
-								<li class="modal__item" onclick="selectOption('Сначала популярные')">Сначала популярные</li>
-								<li class="modal__item" onclick="selectOption('Сначала новые')">Сначала новые</li>
+								<li class="modal__item" data-option="Сначала дорогие">Сначала дорогие</li>
+								<li class="modal__item" data-option="Сначала недорогие">Сначала недорогие</li>
+								<li class="modal__item" data-option="Сначала популярные">Сначала популярные</li>
+								<li class="modal__item" data-option="Сначала новые">Сначала новые</li>
 							</ul>
 						</div>
 					</div>
@@ -196,6 +196,5 @@
 		</div>
 	</main>
 	<footer class="footer"></footer>
-	<script src="script.js"></script>
 </body>
 </html>

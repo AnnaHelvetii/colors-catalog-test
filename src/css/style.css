@@ -1,9 +1,9 @@
-@import "./reset.css";
+@import "reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
 
 @font-face {
 	font-family: 'TTHoves-Medium';
-	src: url('../src/fonts/TTHoves-Medium.ttf');
+	src: url('../fonts/TTHoves-Medium.ttf');
 }
 
 :root {
@@ -92,7 +92,7 @@ body {
 .logo__link img {
 	width: 100%;
 	height: 100%;
-	object-fit: contain;
+	object-fit: contain;;
 }
 
 .nav-media-phone {
@@ -222,7 +222,7 @@ body {
 	left: 12px;
 	top: 50%;
 	transform: translateY(-50%);
-	background-image: url(./../src/img/icons/x.png);
+	background-image: url('../img/icons/x.png');
 	position: absolute;
 }
 
@@ -324,7 +324,7 @@ body {
 .button-decrease::before {
 	content: '';
 	position: absolute;
-	background-image: url('./../src/img/icons/minus.png');
+	background-image: url('../img/icons/minus.png');
 	width: 16px;
 	height: 16px;
 	top: 50%;
@@ -343,7 +343,7 @@ body {
 .button-increase::before {
 	content: '';
 	position: absolute;
-	background-image: url('./../src/img/icons/plus_1.png');
+	background-image: url('../img/icons/plus_1.png');
 	width: 16px;
 	height: 16px;
 	top: 50%;
@@ -365,7 +365,7 @@ body {
 .cart-item__remove::before {
 	content: '';
 	position: absolute;
-	background-image: url('./../src/img/icons/x_light.png');
+	background-image: url('../img/icons/x_light.png');
 	width: 24px;
 	height: 24px;
 	top: 50%;
@@ -374,7 +374,7 @@ body {
 }
 
 .cart-item__remove.out-of-stock::before {
-	background-image: url('./../src/img/icons/repeat.png');
+	background-image: url('../img/icons/repeat.png');
 }
 
 .cart_products-list::-webkit-scrollbar {
@@ -452,7 +452,7 @@ body {
 .slider {
 	height: 560px;
 	margin-bottom: 72px;
-	background-image: url('./../src/img/main-bg.png');
+	background-image: url('../img/main-bg.png');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -790,7 +790,7 @@ body {
 	left: 30px;
 	top: 50%;
 	transform: translateY(-50%);
-	background-image: url(./../src/img/icons/plus.png);
+	background-image: url('../img/icons/plus.png');
 	position: absolute;
 }
 
@@ -1315,7 +1315,7 @@ body {
 		background-color: var(--light-gray);
 		border-radius: 6px;
 		position: relative;
-		transition: opacity 0.5s background-color 0.3s;
+		transition: opacity 0.5s, background-color 0.3s;
 	}
 	
 	.product-card__button:active {

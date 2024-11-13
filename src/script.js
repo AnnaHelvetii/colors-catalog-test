@@ -1,3 +1,5 @@
+import './css/style.css';
+
 const API_BASE_URL = 'https://67309b8066e42ceaf160cbf8.mockapi.io/api/v1/products';
 
 let localCart = [];
@@ -52,10 +54,13 @@ function displayProducts(products) {
 					</p>
 					<div class="product-card__footer">
 						<p class="product-card__price">${product.price} ₽</p>
-						<button class="product-card__button" onclick="addToCart('${product.id}')"></button>
+						<button class="product-card__button"></button>
 					</div>
 				</div>
 			`;
+
+			const button = productCard.querySelector('.product-card__button');
+			button.addEventListener('click', () => addToCart(product.id));
 
 			productsContainer.appendChild(productCard);
 		});
@@ -155,13 +160,22 @@ function displayCartItems() {
 		</div>
 		<div class="cart-item__button-section">
 			<div class="cart-item__set-quantity">
-				<button class="button-decrease" onclick="decreaseQuantity('${item.id}')" ${quantityControls}></button>
+				<button class="button-decrease" ${quantityControls}></button>
 				<p class="cart-item__quantity">${item.quantity}</p>
-				<button class="button-increase" onclick="increaseQuantity('${item.id}')" ${quantityControls}></button>
+				<button class="button-increase" ${quantityControls}></button>
 			</div>
-			<button class="cart-item__remove ${removeButtonClass}" onclick="removeFromCart('${item.id}')"></button>
+			<button class="cart-item__remove ${removeButtonClass}"></button>
 		</div>
 		`;
+
+		const buttonDec = cartItem.querySelector('.button-decrease');
+		buttonDec.addEventListener('click', () => decreaseQuantity(item.id));
+
+		const buttonInc = cartItem.querySelector('.button-increase');
+		buttonInc.addEventListener('click', () => increaseQuantity(item.id));
+
+		const buttonRemove = cartItem.querySelector('.cart-item__remove');
+		buttonRemove.addEventListener('click', () => removeFromCart(item.id));
 
 		cartList.appendChild(cartItem);
 
@@ -221,10 +235,10 @@ const openCartButtonMini = document.querySelector('.icons-item__cart-button-mini
 const closeCartButton = document.querySelector('.cart__close-button');
 
 function toggleCart() {
-	const isCardOpen = document.body.classList.toggle('cart-open');
+	const isCartOpen = document.body.classList.toggle('cart-open');
 	const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-	if (isCardOpen) {
+	if (isCartOpen) {
 		document.body.style.overflow = 'hidden';
 		document.body.style.paddingRight = `${scrollBarWidth}px`;
 		localStorage.setItem('isCartOpen', 'true');
@@ -287,18 +301,14 @@ rightArrow.addEventListener('click', () => {
 
 /* Sort-dropdown + modal + overlay */
 
+document.querySelector('.sort-dropdown__button').addEventListener('click', () => toggleModal());
+
 function toggleModal() {
 	const modal = document.getElementById('sortModal');
 	const overlay = document.getElementById('overlay');
 
 	modal.classList.toggle('show-modal');
 	overlay.classList.toggle('show-overlay');
-};
-
-function selectOption(optionText) {
-	const button = document.querySelector('.sort-dropdown__button');
-	button.innerText = optionText;
-	toggleModal();
 };
 
 function selectOption(optionText) {
@@ -318,8 +328,6 @@ function selectOption(optionText) {
 		case 'Сначала новые':
 			filteredProducts.sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt));
 			break;
-		default:
-			break;
 	}
 
 	displayProducts(filteredProducts);
@@ -334,6 +342,13 @@ window.addEventListener('click', function(event) {
 		modal.classList.remove('show-modal');
 		overlay.classList.remove('show-overlay');
 	}
+});
+
+document.querySelectorAll('.modal__item').forEach(item => {
+	item.addEventListener('click', function() {
+		const optionText = this.getAttribute('data-option');
+		selectOption(optionText);
+	});
 });
 
 /* Burger dropdown for mobile */
