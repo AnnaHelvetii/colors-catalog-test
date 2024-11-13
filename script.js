@@ -87,6 +87,31 @@ function selectOption(optionText) {
 	toggleModal();
 };
 
+function selectOption(optionText) {
+	const button = document.querySelector('.sort-dropdown__button');
+	button.innerText = optionText;
+
+	switch (optionText) {
+		case 'Сначала дорогие':
+			filteredProducts.sort((a, b) => b.price - a.price);
+			break;
+		case 'Сначала недорогие':
+			filteredProducts.sort((a, b) => a.price - b.price);
+			break;
+		case 'Сначала популярные':
+			filteredProducts.sort((a, b) => b.isPopular - a.isPopular);
+			break;
+		case 'Сначала новые':
+			filteredProducts.sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt));
+			break;
+		default:
+			break;
+	}
+
+	displayProducts(filteredProducts);
+	toggleModal();
+}
+
 window.addEventListener('click', function(event) {
 	const modal = document.getElementById('sortModal');
 	const overlay = document.getElementById('overlay');
@@ -94,6 +119,28 @@ window.addEventListener('click', function(event) {
 	if (event.target === overlay) {
 		modal.classList.remove('show-modal');
 		overlay.classList.remove('show-overlay');
+	}
+});
+
+/* Modal sliders in mobile */
+
+const filtersToggleButton = document.querySelector('.filters-toggle-button');
+const filtersModal = document.querySelector('.filters-modal');
+const filtersModalClose = document.querySelector('.filters-modal-close');
+
+// Открытие модального окна
+filtersToggleButton.addEventListener('click', () => {
+	filtersModal.style.display = 'flex';
+	document.body.style.overflow = 'hidden'; // Блокируем прокрутку
+});
+
+
+
+// Закрытие модального окна при клике вне его содержимого
+filtersModal.addEventListener('click', (e) => {
+	if (e.target === filtersModal) {
+		filtersModal.style.display = 'none';
+		document.body.style.overflow = '';
 	}
 });
 
