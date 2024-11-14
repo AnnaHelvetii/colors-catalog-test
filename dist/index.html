@@ -1,1 +1,200 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" src="/css/style.css"><title>Colors</title><script defer="defer" src="/bundle.js"></script></head><body><header class="header"><div class="cart-overlay" id="cart-overlay"></div><div class="cart"><div class="cart__main"><div class="cart__header"><div class="cart__title">Корзина</div><button class="cart__close-button"></button></div><div class="cart__products"><div class="cart__products-header"><div class="cart-count"><p><span></span> товаров</p></div><button class="cart__clear">очистить список</button></div><div class="cart_products-list"></div></div></div><div class="cart__footer"><div class="final-price"><p class="final-price__text">Итого</p><p class="final-price__price">0 ₽</p></div><button class="button-order">оформить заказ</button></div></div><div class="container"><div class="nav-media-phone"><div class="burger"><div class="burger__icon" id="burger-icon"><div class="burger__item"></div><div class="burger__item"></div><div class="burger__item"></div></div><ul class="burger__dropdown" id="burger-dropdown"><li class="burger__option">Продукты</li><li class="burger__option">Цвета</li><li class="burger__option">Вдохновение</li><li class="burger__option">Советы</li><li class="burger__option">Найти магазин</li></ul></div><p class="logo-mini">COLORS</p><a href="#" class="icons-item__link" id="cart-button-open-mini"><div class="icons-item__cart-button-mini"><p></p></div></a></div><nav class="nav"><div class="nav__content"><a href="#" class="logo__link"><img src="/img/logo-colors.png" alt="logo"></a><ul class="nav-list"><li class="nav-list__item"><a href="#" class="nav-list__link">ПРОДУКТЫ</a></li><li class="nav-list__item"><a href="#" class="nav-list__link">ЦВЕТА</a></li><li class="nav-list__item"><a href="#" class="nav-list__link">ВДОХНОВЕНИЕ</a></li><li class="nav-list__item"><a href="#" class="nav-list__link">СОВЕТЫ</a></li><li class="nav-list__item"><a href="#" class="nav-list__link">НАЙТИ МАГАЗИН</a></li></ul></div><div class="nav__actions"><div class="contacts"><a href="#" class="contacts__tel">+7 (495) 221-77-69</a><p class="contacts__text">Заказать звонок</p></div><div class="icons"><a href="#" class="icons-item__link"><img src="/img/search.png" alt="search"> </a><a href="#" class="icons-item__link"><img src="/img/profile.png" class="icons-item__img" alt="profile"> </a><a href="#" class="icons-item__link"><img src="/img/heart.png" class="icons-item__img" alt="like"> </a><a href="#" class="icons-item__link" id="cart-button-open"><div class="icons-item__cart-button"><p></p></div></a></div></div></nav></div></header><main class="main"><div class="slider"><nav class="breadcrumbs" aria-label="breadcrumb"><a class="breadcrumbs__item" href="#">главная</a> <a class="breadcrumbs__item" href="#">продукты</a> <span class="breadcrumbs__item">краски</span></nav><button class="slider__arrow slider__arrow_left"><img src="/img/arrow-left.svg" alt="arrow-left"></button> <button class="slider__arrow slider__arrow_right"><img src="/img/arrow-right.svg" alt="arrow-right"></button><div class="slider__content"><h1 class="slider__title">Краски</h1><p class="slider__subtitle">Идеально подходят для стен и других поверхностей. Найди свой идеальный цвет!</p></div><div class="slider__carousel-indicators"><span class="indicator active"></span> <span class="indicator"></span> <span class="indicator"></span> <span class="indicator"></span> <span class="indicator"></span> <span class="indicator"></span></div></div><div class="container-main"><div class="overlay-mobile"></div><aside class="filters"><ul class="filters__list"><li class="filters__item"><div class="switch-button"><input type="checkbox" id="filterSwitch1" class="switch__input"> <label for="filterSwitch1" class="switch__label"></label> <span class="switch__text">Новинки</span></div></li><li class="filters__item"><div class="switch-button"><input type="checkbox" id="filterSwitch2" class="switch__input"> <label for="filterSwitch2" class="switch__label"></label> <span class="switch__text">Есть в наличии</span></div></li><li class="filters__item"><div class="switch-button"><input type="checkbox" id="filterSwitch3" class="switch__input"> <label for="filterSwitch3" class="switch__label"></label> <span class="switch__text">Контрактные</span></div></li><li class="filters__item"><div class="switch-button"><input type="checkbox" id="filterSwitch4" class="switch__input"> <label for="filterSwitch4" class="switch__label"></label> <span class="switch__text">Эксклюзивные</span></div></li><li class="filters__item"><div class="switch-button"><input type="checkbox" id="filterSwitch5" class="switch__input"> <label for="filterSwitch5" class="switch__label"></label> <span class="switch__text">Распродажа</span></div></li></ul></aside><section class="products"><div class="products__count-and-sort"><div class="products__count"><p><span></span> товаров</p></div><button class="filters-toggle-button">Фильтры</button><div class="sort-dropdown"><button class="sort-dropdown__button">Cначала дорогие</button><div class="overlay" id="overlay"></div><div class="modal" id="sortModal"><ul class="modal__list"><li class="modal__item" data-option="Сначала дорогие">Сначала дорогие</li><li class="modal__item" data-option="Сначала недорогие">Сначала недорогие</li><li class="modal__item" data-option="Сначала популярные">Сначала популярные</li><li class="modal__item" data-option="Сначала новые">Сначала новые</li></ul></div></div></div><div class="products__list" id="products-list"></div></section></div></main><footer class="footer"></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" src="/css/style.css">
+	<title>Colors</title>
+</head>
+<body>
+	<header class="header">
+		<div class="cart-overlay" id="cart-overlay"></div>
+		<div class="cart">
+			<div class="cart__main">
+				<div class="cart__header">
+					<div class="cart__title">Корзина</div>
+					<button class="cart__close-button"></button>	
+				</div>
+				<div class="cart__products">
+					<div class="cart__products-header">
+						<div class="cart-count">
+							<p><span></span> товаров</p>
+						</div>
+						<button class="cart__clear">очистить список</button>
+					</div>
+					<div class="cart_products-list"></div>
+				</div>
+			</div>
+			<div class="cart__footer">
+				<div class="final-price">
+					<p class="final-price__text">Итого</p>
+					<p class="final-price__price">0 ₽</p>
+				</div>
+				<button class="button-order">оформить заказ</button>
+			</div>
+		</div>
+		<div class="container">
+			<div class="nav-media-phone">
+				<div class="burger">
+					<div class="burger__icon" id="burger-icon">
+						<div class="burger__item"></div>
+						<div class="burger__item"></div>
+						<div class="burger__item"></div>
+					</div>
+					<ul class="burger__dropdown" id="burger-dropdown">
+						<li class="burger__option">Продукты</li>
+						<li class="burger__option">Цвета</li>
+						<li class="burger__option">Вдохновение</li>
+						<li class="burger__option">Советы</li>
+						<li class="burger__option">Найти магазин</li>
+					</ul>
+				</div>
+				<p class="logo-mini">COLORS</p>
+				<a href="#" class="icons-item__link" id="cart-button-open-mini">
+					<div class="icons-item__cart-button-mini">
+						<p></p>
+					</div>
+				</a>
+			</div>
+			<nav class="nav">
+				<div class="nav__content">
+					<a href="#" class="logo__link">
+						<img src="img/logo-colors.png" alt="logo">
+					</a>
+					<ul class="nav-list">
+						<li class="nav-list__item">
+							<a href="#" class="nav-list__link">ПРОДУКТЫ</a>
+						</li>
+						<li class="nav-list__item">
+							<a href="#" class="nav-list__link">ЦВЕТА</a>
+						</li>
+						<li class="nav-list__item">
+							<a href="#" class="nav-list__link">ВДОХНОВЕНИЕ</a>
+						</li>
+						<li class="nav-list__item">
+							<a href="#" class="nav-list__link">СОВЕТЫ</a>
+						</li>
+						<li class="nav-list__item">
+							<a href="#" class="nav-list__link">НАЙТИ МАГАЗИН</a>
+						</li>
+					</ul>
+				</div>				
+				<div class="nav__actions">
+					<div class="contacts">
+						<a href="#" class="contacts__tel">+7 (495) 221-77-69</a>
+						<p class="contacts__text">Заказать звонок</p>
+					</div>
+					<div class="icons">
+						<a href="#" class="icons-item__link">
+							<img src="img/search.png" alt="search">
+						</a>
+						<a href="#" class="icons-item__link">
+							<img src="img/profile.png" class="icons-item__img" alt="profile">
+						</a>					
+						<a href="#" class="icons-item__link">
+							<img src="img/heart.png" class="icons-item__img" alt="like">
+						</a>					
+						<a href="#" class="icons-item__link" id="cart-button-open">
+							<div class="icons-item__cart-button">
+								<p></p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<main class="main">
+		<div class="slider">
+			<nav class="breadcrumbs" aria-label="breadcrumb">
+				<a class="breadcrumbs__item" href="#">главная</a>
+				<a class="breadcrumbs__item" href="#">продукты</a>
+				<span class="breadcrumbs__item">краски</span>
+			</nav>
+			<button class="slider__arrow slider__arrow_left">
+				<img src="img/arrow-left.svg" alt="arrow-left">
+			</button>
+			<button class="slider__arrow slider__arrow_right">
+				<img src="img/arrow-right.svg" alt="arrow-right">
+			</button>
+			<div class="slider__content">
+				<h1 class="slider__title">Краски</h1>
+				<p class="slider__subtitle">Идеально подходят для стен и других поверхностей. Найди свой идеальный цвет!</p>
+			</div>
+			<div class="slider__carousel-indicators">
+				<span class="indicator active"></span>
+				<span class="indicator"></span>
+				<span class="indicator"></span>
+				<span class="indicator"></span>
+				<span class="indicator"></span>
+				<span class="indicator"></span>
+			</div>
+		</div>
+		<div class="container-main">
+			<div class="overlay-mobile"></div>
+			<aside class="filters">
+				<ul class="filters__list">
+					<li class="filters__item">
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch1" class="switch__input">
+							<label for="filterSwitch1" class="switch__label"></label>
+							<span class="switch__text">Новинки</span>
+						</div>
+					</li>
+					<li class="filters__item">
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch2" class="switch__input">
+							<label for="filterSwitch2" class="switch__label"></label>
+							<span class="switch__text">Есть в наличии</span>
+						</div>
+					</li>
+					<li class="filters__item">
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch3" class="switch__input">
+							<label for="filterSwitch3" class="switch__label"></label>
+							<span class="switch__text">Контрактные</span>
+						</div>
+					</li>
+					<li class="filters__item">
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch4" class="switch__input">
+							<label for="filterSwitch4" class="switch__label"></label>
+							<span class="switch__text">Эксклюзивные</span>
+						</div>
+					</li>
+					<li class="filters__item">
+						<div class="switch-button">
+							<input type="checkbox" id="filterSwitch5" class="switch__input">
+							<label for="filterSwitch5" class="switch__label"></label>
+							<span class="switch__text">Распродажа</span>
+						</div>
+					</li>
+				</ul>
+			</aside>
+			<section class="products">
+				<div class="products__count-and-sort">
+					<div class="products__count">
+						<p><span></span> товаров</p>
+					</div>
+					<button class="filters-toggle-button">Фильтры</button>
+					<div class="sort-dropdown">
+						<button class="sort-dropdown__button">Cначала дорогие</button>
+						<div class="overlay" id="overlay"></div>
+						<div class="modal" id="sortModal">
+							<ul class="modal__list">
+								<li class="modal__item" data-option="Сначала дорогие">Сначала дорогие</li>
+								<li class="modal__item" data-option="Сначала недорогие">Сначала недорогие</li>
+								<li class="modal__item" data-option="Сначала популярные">Сначала популярные</li>
+								<li class="modal__item" data-option="Сначала новые">Сначала новые</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="products__list" id="products-list">
+				</div>
+			</section>
+		</div>
+	</main>
+	<footer class="footer"></footer>
+<script defer src="bundle.js"></script></body>
+</html>
